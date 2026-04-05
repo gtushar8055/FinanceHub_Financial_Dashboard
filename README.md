@@ -6,54 +6,6 @@ A modern, interactive personal finance dashboard built with React that provides 
 
 ---
 
-## 📸 Screenshots
-
-> **Note**: To add screenshots, create a `screenshots` directory in the project root and add the following images. Screenshot placeholders are provided below.
-
-### Dashboard Overview
-
-<!-- Add your dashboard overview screenshot here -->
-<!-- ![Dashboard Overview](screenshots/dashboard-overview.png) -->
-
-_Coming soon - Full dashboard view showing balance, summary cards, and charts_
-
-### Transaction List View
-
-<!-- Add your transaction list view screenshot here -->
-<!-- ![Transaction List](screenshots/transaction-list.png) -->
-
-_Coming soon - Transaction list with search, filters, and sorting features_
-
-### Calendar View
-
-<!-- Add your calendar view screenshot here -->
-<!-- ![Calendar View](screenshots/calendar-view.png) -->
-
-_Coming soon - Calendar view with date-based transaction grouping_
-
-### Analytics & Charts
-
-<!-- Add your analytics charts screenshot here -->
-<!-- ![Analytics](screenshots/analytics.png) -->
-
-_Coming soon - Interactive charts showing spending patterns_
-
-### Dark Mode
-
-<!-- Add your dark mode screenshot here -->
-<!-- ![Dark Mode](screenshots/dark-mode.png) -->
-
-_Coming soon - Dashboard in dark theme_
-
-### Search & Filter Features
-
-<!-- Add your search and filter features screenshot here -->
-<!-- ![Search & Filter](screenshots/search-filter.png) -->
-
-_Coming soon - Advanced search, type filtering, and amount sorting_
-
----
-
 ## 📋 Table of Contents
 
 - [Screenshots](#-screenshots)
@@ -64,6 +16,38 @@ _Coming soon - Advanced search, type filtering, and amount sorting_
 - [Technologies Used](#technologies-used)
 
 ---
+## 📸 Screenshots
+
+### Dashboard Overview
+
+<img width="1919" height="903" alt="Screenshot 2026-04-05 170729" src="https://github.com/user-attachments/assets/125a8e79-833e-469c-997d-a92666418faa" />
+<img width="1913" height="915" alt="Screenshot 2026-04-05 171310" src="https://github.com/user-attachments/assets/721f7875-80a8-4e12-9ba2-4f1848ba5a6c" />
+
+
+### Transaction List View
+<img width="1918" height="915" alt="Screenshot 2026-04-05 170815" src="https://github.com/user-attachments/assets/5f54734b-0a57-4b33-af79-86510d9b7a10" />
+<img width="1919" height="913" alt="Screenshot 2026-04-05 170908" src="https://github.com/user-attachments/assets/c2c1a03f-717f-4625-bc17-f1c5a9191ac5" />
+
+
+### Calendar View
+
+<img width="1919" height="917" alt="Screenshot 2026-04-05 171450" src="https://github.com/user-attachments/assets/cfef5bbb-7d84-40af-ae01-e2886c7d028f" />
+<img width="1919" height="913" alt="Screenshot 2026-04-05 171439" src="https://github.com/user-attachments/assets/d8d1025f-0c91-403b-96c3-9e6e2851e808" />
+
+
+### Analytics & Charts
+
+<img width="1919" height="916" alt="Screenshot 2026-04-05 170827" src="https://github.com/user-attachments/assets/8a85d75e-873f-4044-8d5c-8c79d6c6c972" />
+<img width="1919" height="922" alt="Screenshot 2026-04-05 171333" src="https://github.com/user-attachments/assets/c78b222c-2709-49a0-afa3-f32f50395d9a" />
+
+
+### Insights
+
+<img width="1919" height="920" alt="Screenshot 2026-04-05 170946" src="https://github.com/user-attachments/assets/8a4b111c-37d9-4833-81a8-7776b2729cb7" />
+<img width="1919" height="911" alt="Screenshot 2026-04-05 170932" src="https://github.com/user-attachments/assets/b586fcae-0d27-497a-898b-682488e8aa41" />
+
+
+--- 
 
 ## 🎯 Overview of Approach
 
