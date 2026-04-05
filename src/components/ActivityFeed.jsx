@@ -20,6 +20,9 @@ import {
   CircleDot,
   CalendarDays,
   List,
+  ArrowUpDown,
+  ArrowUp,
+  ArrowDown,
 } from "lucide-react";
 import { useFinance } from "../context/FinanceContext";
 import { useDebounce } from "../hooks/useDebounce";
@@ -175,6 +178,8 @@ const ActivityFeed = ({ onAddTransaction, onEditTransaction }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [activeFilters, setActiveFilters] = useState([]);
   const [viewMode, setViewMode] = useState("list"); // "list" or "calendar"
+  const [sortBy, setSortBy] = useState("date"); // "date", "amount-asc", "amount-desc"
+  const [typeFilter, setTypeFilter] = useState("all"); // "all", "income", "expense"
   const debouncedSearch = useDebounce(searchTerm, 300);
 
   const categories = useMemo(
@@ -201,10 +206,20 @@ const ActivityFeed = ({ onAddTransaction, onEditTransaction }) => {
           t.category.toLowerCase().includes(debouncedSearch.toLowerCase());
         const matchesFilter =
           activeFilters.length === 0 || activeFilters.includes(t.category);
-        return matchesSearch && matchesFilter;
+        const matchesType = typeFilter === "all" || t.type === typeFilter;
+        return matchesSearch && matchesFilter && matchesType;
       })
-      .sort((a, b) => new Date(b.date) - new Date(a.date));
-  }, [transactions, debouncedSearch, activeFilters]);
+      .sort((a, b) => {
+        if (sortBy === "amount-asc") {
+          return a.amount - b.amount;
+        } else if (sortBy === "amount-desc") {
+          return b.amount - a.amount;
+        } else {
+          // Default: sort by date (newest first)
+          return new Date(b.date) - new Date(a.date);
+        }
+      });
+  }, [transactions, debouncedSearch, activeFilters, sortBy, typeFilter]);
 
   const isAdmin = userRole === "admin";
 
@@ -260,18 +275,104 @@ const ActivityFeed = ({ onAddTransaction, onEditTransaction }) => {
         </div>
 
         {viewMode === "list" && (
-          <div className="relative mb-4">
-            <Search
-              size={18}
-              className="absolute left-4 top-1/2 -translate-y-1/2 text-amber-600 dark:text-zinc-400"
-            />
-            <input
-              type="text"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              placeholder="Search transactions..."
-              className="w-full pl-11 pr-4 py-3 rounded-xl bg-amber-50 dark:bg-zinc-900 border-2 border-amber-800 dark:border-zinc-700 text-amber-900 dark:text-white placeholder:text-amber-600 dark:placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-amber-500/30"
-            />
+          <div className="space-y-4 mb-4">
+            <div className="relative">
+              <Search
+                size={18}
+                className="absolute left-4 top-1/2 -translate-y-1/2 text-amber-600 dark:text-zinc-400"
+              />
+              <input
+                type="text"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                placeholder="Search transactions..."
+                className="w-full pl-11 pr-4 py-3 rounded-xl bg-amber-50 dark:bg-zinc-900 border-2 border-amber-800 dark:border-zinc-700 text-amber-900 dark:text-white placeholder:text-amber-600 dark:placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-amber-500/30"
+              />
+            </div>
+
+            {/* Sort and Type Filter Controls */}
+            <div className="flex flex-col sm:flex-row gap-3">
+              {/* Type Filter */}
+              <div className="flex items-center gap-2 flex-wrap">
+                <span className="text-sm font-medium text-amber-800 dark:text-zinc-400">
+                  Type:
+                </span>
+                <div className="flex items-center bg-amber-200 dark:bg-zinc-800 rounded-lg p-1 border-2 border-amber-600 dark:border-zinc-600">
+                  <button
+                    onClick={() => setTypeFilter("all")}
+                    className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all whitespace-nowrap ${
+                      typeFilter === "all"
+                        ? "bg-amber-800 dark:bg-amber-700 text-white"
+                        : "text-amber-700 dark:text-zinc-400 hover:text-amber-900 dark:hover:text-white"
+                    }`}
+                  >
+                    All
+                  </button>
+                  <button
+                    onClick={() => setTypeFilter("income")}
+                    className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all whitespace-nowrap ${
+                      typeFilter === "income"
+                        ? "bg-green-600 dark:bg-green-700 text-white"
+                        : "text-amber-700 dark:text-zinc-400 hover:text-green-600 dark:hover:text-green-400"
+                    }`}
+                  >
+                    Income
+                  </button>
+                  <button
+                    onClick={() => setTypeFilter("expense")}
+                    className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all whitespace-nowrap ${
+                      typeFilter === "expense"
+                        ? "bg-red-600 dark:bg-red-700 text-white"
+                        : "text-amber-700 dark:text-zinc-400 hover:text-red-600 dark:hover:text-red-400"
+                    }`}
+                  >
+                    Expense
+                  </button>
+                </div>
+              </div>
+
+              {/* Sort Control */}
+              <div className="flex items-center gap-2 flex-wrap">
+                <span className="text-sm font-medium text-amber-800 dark:text-zinc-400">
+                  Sort by:
+                </span>
+                <div className="flex items-center bg-amber-200 dark:bg-zinc-800 rounded-lg p-1 border-2 border-amber-600 dark:border-zinc-600">
+                  <button
+                    onClick={() => setSortBy("date")}
+                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium transition-all whitespace-nowrap ${
+                      sortBy === "date"
+                        ? "bg-amber-800 dark:bg-amber-700 text-white"
+                        : "text-amber-700 dark:text-zinc-400 hover:text-amber-900 dark:hover:text-white"
+                    }`}
+                  >
+                    <CalendarDays size={14} />
+                    Date
+                  </button>
+                  <button
+                    onClick={() => setSortBy("amount-asc")}
+                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium transition-all whitespace-nowrap ${
+                      sortBy === "amount-asc"
+                        ? "bg-amber-800 dark:bg-amber-700 text-white"
+                        : "text-amber-700 dark:text-zinc-400 hover:text-amber-900 dark:hover:text-white"
+                    }`}
+                  >
+                    <ArrowUp size={14} />
+                    Amount
+                  </button>
+                  <button
+                    onClick={() => setSortBy("amount-desc")}
+                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium transition-all whitespace-nowrap ${
+                      sortBy === "amount-desc"
+                        ? "bg-amber-800 dark:bg-amber-700 text-white"
+                        : "text-amber-700 dark:text-zinc-400 hover:text-amber-900 dark:hover:text-white"
+                    }`}
+                  >
+                    <ArrowDown size={14} />
+                    Amount
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         )}
 

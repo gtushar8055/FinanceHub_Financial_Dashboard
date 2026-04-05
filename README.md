@@ -6,8 +6,57 @@ A modern, interactive personal finance dashboard built with React that provides 
 
 ---
 
+## 📸 Screenshots
+
+> **Note**: To add screenshots, create a `screenshots` directory in the project root and add the following images. Screenshot placeholders are provided below.
+
+### Dashboard Overview
+
+<!-- Add your dashboard overview screenshot here -->
+<!-- ![Dashboard Overview](screenshots/dashboard-overview.png) -->
+
+_Coming soon - Full dashboard view showing balance, summary cards, and charts_
+
+### Transaction List View
+
+<!-- Add your transaction list view screenshot here -->
+<!-- ![Transaction List](screenshots/transaction-list.png) -->
+
+_Coming soon - Transaction list with search, filters, and sorting features_
+
+### Calendar View
+
+<!-- Add your calendar view screenshot here -->
+<!-- ![Calendar View](screenshots/calendar-view.png) -->
+
+_Coming soon - Calendar view with date-based transaction grouping_
+
+### Analytics & Charts
+
+<!-- Add your analytics charts screenshot here -->
+<!-- ![Analytics](screenshots/analytics.png) -->
+
+_Coming soon - Interactive charts showing spending patterns_
+
+### Dark Mode
+
+<!-- Add your dark mode screenshot here -->
+<!-- ![Dark Mode](screenshots/dark-mode.png) -->
+
+_Coming soon - Dashboard in dark theme_
+
+### Search & Filter Features
+
+<!-- Add your search and filter features screenshot here -->
+<!-- ![Search & Filter](screenshots/search-filter.png) -->
+
+_Coming soon - Advanced search, type filtering, and amount sorting_
+
+---
+
 ## 📋 Table of Contents
 
+- [Screenshots](#-screenshots)
 - [Overview of Approach](#overview-of-approach)
 - [Setup Instructions](#setup-instructions)
 - [Features](#features)
@@ -194,12 +243,14 @@ vercel --prod
 
 ### 4. Advanced Search & Filtering
 
-**Description**: Real-time search with multi-category filtering.
+**Description**: Real-time search with multi-category filtering, type-based filtering, and amount sorting.
 
 **How it works**:
 
 - Search by transaction description or category
 - Filter by one or multiple categories
+- Filter by transaction type (All, Income, Expense)
+- Sort by date (newest first) or amount (ascending/descending)
 - Instant results with debounced search (300ms delay)
 - Clear visual feedback for active filters
 
@@ -208,6 +259,11 @@ vercel --prod
 - `useDebounce` hook prevents excessive filtering
 - Combined filter logic using `useMemo` for efficiency
 - Filter chips with toggle functionality
+- Multi-criteria sorting and filtering with memoized computation
+
+<!-- Add screenshot of search and filter features -->
+
+![Search & Filter Features](screenshots/search-filter.png)
 
 ### 5. Transaction Management (Admin Mode)
 
